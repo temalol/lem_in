@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/19 01:09:35 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/19 01:23:28 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	parse_input()
 		}	
 		parse_node_name(line);
 		free(line);
+		
+		
 	}	
 		
 	return (1);
