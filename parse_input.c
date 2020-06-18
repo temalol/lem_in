@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/19 02:26:54 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/19 02:45:00 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,23 @@ int	parse_node_name(char *line)
 	}	
 	while(line[i] != ' ' && line[i] != '\0')	
 	{
+			//printf("%c", line[i]);
+			i++;
+	}
+	if (line[i] == ' ')
+	{
+		i = 0;
+		while (line[i] != ' ')
 		{
 			printf("%c", line[i]);
 			i++;
-		}	
-		
+		}
+		printf("\n");
+		return(1);
 	}
-	printf("\n");
-	return(1);
+	else
+		return(0);
+	
 }
 
 int	parse_input()
@@ -83,8 +92,14 @@ int	parse_input()
 			//flag = 1;
 			continue;	
 		}	
-		parse_node_name(line);
-		free(line);
+		if (parse_node_name(line))
+			free(line);
+		else
+		{
+			printf("ERROR\n");
+			exit(0);
+		}
+		
 	}	
 		
 	return (1);
