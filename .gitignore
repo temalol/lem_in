@@ -1,3 +1,4 @@
-.o
+*.o
 *.dSYM
 lem_in
+*.a
