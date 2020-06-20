@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 01:22:22 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/21 02:49:37 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ int	parse_ants_number()
 			else
 				err_exit();
 		}
-	else
+	else 
 		{
+			//if gnl -1? 
 			free(line);
 			err_exit();
 		}
@@ -102,7 +103,7 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 	i = 0;
 
 	if (!line[i] || line[i] == ' ')
-			err_exit();
+			err_exit();			
 	while(line[i] != ' ' && line[i])	
 			i++;
 	if (line[i] == ' ')
@@ -120,17 +121,11 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 int	parse_input()
 {
 	char	*line;
-	//int 	ants_num;
-	//t_hash 	**h_table;
-	//t_hash 	*start;
-	//t_hash	*end;
 	t_hash *node_ret;
-	t_graph *graph;
-	
+	t_graph *graph = NULL;
 	graph = malloc(sizeof(t_graph));
 	graph->start = NULL;
 	graph->end = NULL;
- 	
 	if ((graph->ants_num = parse_ants_number()) < 1)
 		err_exit();
 	
@@ -150,10 +145,15 @@ int	parse_input()
 	}
 	printf("\n");
 	print_hash_table(graph->h_table);
+	free_hash_table(graph->h_table);
+	free(graph);
+	free(line);
 	if (graph->start && graph->end)
+		return (1);
+	else
 	{
-		printf("\nStart:%s\n", graph->start->node_name);
-		printf("End:%s\n", graph->end->node_name);
+		free(line);
+		err_exit();
 	}
-	return (1);
+	return 0;
 }

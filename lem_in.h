@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 00:43:30 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/21 02:22:50 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ typedef struct s_graph
 	
 } t_graph ;
 
-
-
 # include "get_next_line.h"
 # include <stdio.h>
 
@@ -48,8 +46,7 @@ void				err_exit();
 t_hash				*assign_to_table(t_hash **table, char *node_name);
 void				print_hash_table(t_hash **h_table);
 t_hash				*parse_node_name(char *line, t_hash **h_table);
-
-
+void				free_hash_table(t_hash **h_table);
 
 
 #endif
