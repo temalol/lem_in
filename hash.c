@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 14:44:25 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/20 16:12:29 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/20 17:43:43 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	assign_to_table(t_hash **table, char *node_name)
 	
 	hash_val = calc_hash(node_name);
 	
-	if (table[hash_val] == NULL)
+	if (table[hash_val] == NULL )
 	{
 		new = malloc(sizeof(t_hash));
 		new->next = NULL;
@@ -46,7 +46,23 @@ void	assign_to_table(t_hash **table, char *node_name)
 	}
 	else
 	{
-		err_exit();
+		t_hash *node;
+		
+		node = table[hash_val]; 
+		while(node)
+		{
+			if (ft_strequ(node_name, node->node_name))
+				err_exit();
+			node = node->next;
+		}
+		
+		node = table[hash_val]; 
+		new = malloc(sizeof(t_hash));
+		new->next = NULL;
+		new->node_name = node_name;
+		while (node->next)
+			node = node->next;
+		node->next = new;	
 	}
 }
 
@@ -67,13 +83,24 @@ unsigned int	calc_hash(char *node_name)
 void	print_hash_table(t_hash **h_table)
 {
 	size_t i;
+	t_hash *node;
 	
 	i = 0;
 	while(i < TABLE_SIZE)
 	{
 		if (h_table[i])
-		printf("[%zu]=%s\n",i, h_table[i]->node_name);
+		{
+			node = h_table[i];
+			while (node)
+			{
+				printf("h[%zu]=%s  ",i, node->node_name);
+				node = node->next;
+			}
+			printf("\n");
+		
+		}
 		i++;
 	}
 	
 }
+

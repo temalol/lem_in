@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/20 16:12:43 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/20 16:20:41 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 	#define LEM_IN_H
 
 
-# define TABLE_SIZE 100
+# define TABLE_SIZE 10000
 
 
 typedef struct s_hash

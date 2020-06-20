@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/20 16:11:49 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/20 17:16:14 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ int	parse_input()
 {
 	char	*line;
 	int 	ants_num;
-	t_hash **h_table;
-	//int 	x;
-	//int 	y;
-	//int 	flag = 0;
+	t_hash 	**h_table;
 	
 	if ((ants_num = parse_ants_number()) < 1)
 		err_exit();
@@ -90,8 +87,8 @@ int	parse_input()
 		}	
 		if (parse_node_name(line, h_table))
 			free(line);
-		//else
-			//err_exit();
+		else
+			break;
 	}
 	printf("\n");
 	print_hash_table(h_table);
