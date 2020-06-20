@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 02:49:37 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/21 03:00:16 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 	i = 0;
 
 	if (!line[i] || line[i] == ' ')
-			err_exit();			
+			err_exit();		
 	while(line[i] != ' ' && line[i])	
 			i++;
 	if (line[i] == ' ')
@@ -146,13 +146,16 @@ int	parse_input()
 	printf("\n");
 	print_hash_table(graph->h_table);
 	free_hash_table(graph->h_table);
-	free(graph);
+
 	free(line);
 	if (graph->start && graph->end)
-		return (1);
+			{
+				free(graph);
+				return (1);
+			}
 	else
 	{
-		free(line);
+		free(graph);
 		err_exit();
 	}
 	return 0;
