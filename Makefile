@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/19 00:49:00 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/20 15:46:54 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror
 
 LFTPATH = ./libft -lft
 
-SRC = main.c parse_input.c get_next_line.c ft_atoi_validate_pos.c
+SRC = main.c parse_input.c get_next_line.c ft_atoi_validate_pos.c hash.c
 
 OBJ = $(SRC:.c=.o)
 

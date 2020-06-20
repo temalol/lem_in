@@ -6,16 +6,22 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/19 02:45:00 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/20 16:11:49 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
+void	err_exit()
+{
+	write(STDERR_FILENO, "ERROR\n", 6);
+	exit(1);
+}
+
 int	parse_ants_number()
 {
 	char	*line;
-	int		ants_num;
+	int		ants_num = 0;
 	
 	if (get_next_line(0, &line) > 0)
 		{
@@ -24,43 +30,31 @@ int	parse_ants_number()
 			if (ants_num > 0)
 				printf("Ant's number is %d\n", ants_num);
 			else
-				{
-					printf("Ant's number is invalid\n");
-					return (0);
-				}
+				err_exit();
 		}
 	else
-		{
-			printf("File is Empty\n");
-			return (0);
-		}
-	//printf("End of ants num parsing\n");
+		err_exit();
 	return (ants_num);	
 }
 
 
 
-int	parse_node_name(char *line)
+int	parse_node_name(char *line, t_hash **h_table)
 {
 	int i;
 	
 	i = 0;
 
 	if (!line[i])
-	{
-		printf("Nodes parsing error\n");
-		exit(0);
-
-	}	
-	while(line[i] != ' ' && line[i] != '\0')	
-	{
-			//printf("%c", line[i]);
+			err_exit();
+	while(line[i] != ' ' && line[i])	
 			i++;
-	}
 	if (line[i] == ' ')
 	{
+		line[i] = 0;
 		i = 0;
-		while (line[i] != ' ')
+		assign_to_table(h_table, ft_strdup(line));
+		while (line[i])
 		{
 			printf("%c", line[i]);
 			i++;
@@ -77,30 +71,29 @@ int	parse_input()
 {
 	char	*line;
 	int 	ants_num;
+	t_hash **h_table;
 	//int 	x;
 	//int 	y;
 	//int 	flag = 0;
 	
 	if ((ants_num = parse_ants_number()) < 1)
-		exit (0);
-	
+		err_exit();
+	h_table = hash_table_init();
 	while (get_next_line(0, &line) > 0)
 	{
 		if (line[0] == '#' && line[1] == '#')
 		{
+			printf("%s\n", line);
 			free(line);
 			//flag = 1;
 			continue;	
 		}	
-		if (parse_node_name(line))
+		if (parse_node_name(line, h_table))
 			free(line);
-		else
-		{
-			printf("ERROR\n");
-			exit(0);
-		}
-		
-	}	
-		
+		//else
+			//err_exit();
+	}
+	printf("\n");
+	print_hash_table(h_table);
 	return (1);
 }
