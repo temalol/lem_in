@@ -6,16 +6,14 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/20 16:20:41 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/21 00:43:30 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 	#define LEM_IN_H
 
-
 # define TABLE_SIZE 10000
-
 
 typedef struct s_hash
 {
@@ -23,21 +21,33 @@ typedef struct s_hash
 	int x;
 	int y;
 	struct s_hash *next;
+	struct s_hash *ver;
+	
 	
 } t_hash;
+
+typedef struct s_graph
+{
+	t_hash **h_table;
+	t_hash *start;
+	t_hash *end;
+	int ants_num;
+	
+} t_graph ;
+
 
 
 # include "get_next_line.h"
 # include <stdio.h>
-//# include "./libft/libft.h"
 
 int					parse_input();
 int					ft_atoi_validate_pos(const char *str);
 unsigned int		calc_hash(char *str);
 t_hash 				**hash_table_init();
 void				err_exit();
-void				assign_to_table(t_hash **table, char *node_name);
+t_hash				*assign_to_table(t_hash **table, char *node_name);
 void				print_hash_table(t_hash **h_table);
+t_hash				*parse_node_name(char *line, t_hash **h_table);
 
 
 
