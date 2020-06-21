@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/22 03:11:30 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/22 03:19:49 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,12 @@ $(OBJDIR)/%.o : %.c lem_in.h get_next_line.h
 	@echo 'Compile $<'
 
 clean:
-		@echo 'rm checker object files..'
+		@echo 'rm object files..'
 		@rm -f $(OBJ)
 		@echo 'DONE'
 
 fclean:
-		@echo 'rm checker object files & executable..'
+		@echo 'rm object files & executable..'
 		@rm -f $(OBJ)
 		@rm -f $(NAME)
 		@echo 'DONE'
