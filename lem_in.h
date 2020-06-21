@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/22 02:09:35 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/22 03:33:56 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_child
 	struct s_hash *c_node;
 	struct s_child *next;
 
-} t_child;
+}              t_child;
 
 typedef struct s_hash
 {

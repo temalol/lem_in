@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/22 03:19:49 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/22 03:41:52 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME = lem_in
 FLAGS = -Wall -Wextra -Werror
 
 #PFTPATH = ../ft_printf/ -lftprintf
+
+HEADERS = lem_in.h get_next_line.h
 
 OBJDIR = objs
 
@@ -28,10 +30,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo 'Linking... '
+	@make -s -C $(LFTPATH)
 	@gcc $(FLAGS) -o $(NAME) $(OBJ) -L $(LFTPATH)
 	@echo 'DONE'
 
-$(OBJDIR)/%.o : %.c lem_in.h get_next_line.h
+$(OBJDIR)/%.o : %.c $(HEADERS)
 	@gcc $(FLAGS) -c $< -o $@
 	@echo 'Compile $<'
 
