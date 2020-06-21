@@ -6,11 +6,36 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 18:03:49 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/21 22:18:05 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	parse_rooms(t_graph *graph)
+{
+	char 	*line;
+	t_hash 	*node_ret;
+	
+	line = NULL;
+	while (get_next_line(0, &line) > 0)
+	{
+		if (line[0] == '#')
+		{
+			parse_comments(line, graph);
+			continue;
+		}
+		if ((node_ret = parse_node_name(line, graph->h_table)))
+			free(line);
+		else
+			break;
+	}
+	if (graph->start && graph->end)
+		return ;
+	else
+		err_exit();
+}
+
 
 void	err_exit()
 {
@@ -27,10 +52,7 @@ void parse_comments(char *line, t_graph *graph)
 		else if (parse_end_node(line, graph))
 			return ;
 		else
-			{
-				free(line);
-				err_exit();
-			}
+			err_exit();
 	}
 	
 	if (line[0] == '#')
@@ -74,7 +96,7 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 	if (line[i] == ' ')
 	{
 		line[i] = 0;
-		if (hash_query(h_table, line) == NULL)
+		if (!hash_query(h_table, line))
 			node = assign_to_table(h_table, ft_strdup(line));
 		else
 			err_exit();
@@ -88,42 +110,10 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 
 int	parse_input()
 {
-	char	*line;
-	t_hash *node_ret;
 	t_graph *graph = NULL;
-	graph = malloc(sizeof(t_graph));
-	graph->start = NULL;
-	graph->end = NULL;
+	graph = graph_init();
 	if ((graph->ants_num = parse_ants_number()) < 1)
 		err_exit();
-	
-	graph->h_table = hash_table_init();
-	
-	while (get_next_line(0, &line) > 0)
-	{
-		if (line[0] == '#')
-		{
-			parse_comments(line, graph);
-			continue;
-		}
-		if ((node_ret = parse_node_name(line, graph->h_table)))
-			free(line);
-		else
-			break;
-	}
-	printf("\n");
-	print_hash_table(graph->h_table);
-	free_hash_table(graph->h_table);
-	free(line);
-	if (graph->start && graph->end)
-			{
-				free(graph);
-				return (1);
-			}
-	else
-	{
-		free(graph);
-		err_exit();
-	}
+	parse_rooms(graph);
 	return 0;	
 }

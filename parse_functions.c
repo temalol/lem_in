@@ -6,11 +6,22 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 17:08:45 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 17:27:33 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/21 22:14:26 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_graph	*graph_init()
+{
+	t_graph *graph;
+	
+	graph = malloc(sizeof(t_graph));
+	graph->start = NULL;
+	graph->end = NULL;
+	graph->h_table = hash_table_init();
+	return(graph);
+}
 
 int	parse_start_node(char *line, t_graph *graph)
 {

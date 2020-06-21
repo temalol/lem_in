@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 17:58:32 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/21 22:15:22 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,14 @@ void				err_exit();
 t_hash				*assign_to_table(t_hash **table, char *node_name);
 void				print_hash_table(t_hash **h_table);
 void				free_hash_table(t_hash **h_table);
+t_graph				*graph_init();
+
 
 /*
 ** -------------------------- Parsing functions --------------------------------
 */
 
+void 				parse_comments(char *line, t_graph *graph);
 int					parse_start_node(char *line, t_graph *graph);
 int					parse_end_node(char *line, t_graph *graph);
 int					parse_input();
