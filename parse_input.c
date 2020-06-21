@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 03:00:16 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/21 18:03:49 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,45 +20,13 @@ void	err_exit()
 
 void parse_comments(char *line, t_graph *graph)
 {
-	t_hash *node;
-	
 	if (line[0] == '#' && line[1] == '#')
 	{
-		if (ft_strequ("##start", line) && !graph->start)
-			{
-				printf("%s\n", line);
-				free(line);
-				if(get_next_line(0, &line) && (node = parse_node_name(line, graph->h_table)))
-				{
-						graph->start = node;
-						free(line);
-						return;
-				}
-				else
-				{
-					free(line);
-					err_exit();
-				}	
-			}
-			
-		else if (ft_strequ("##end", line) && !graph->end)
-			{
-				printf("%s\n", line);
-				free(line);
-				if(get_next_line(0, &line) && (node = parse_node_name(line, graph->h_table)))
-				{
-						graph->end = node;
-						free(line);
-						return;
-				}
-				else
-				{
-					free(line);
-					err_exit();
-				}	
-			}
-			
-			else
+		if (parse_start_node(line, graph))
+			return ;	
+		else if (parse_end_node(line, graph))
+			return ;
+		else
 			{
 				free(line);
 				err_exit();
@@ -87,11 +55,7 @@ int	parse_ants_number()
 				err_exit();
 		}
 	else 
-		{
-			//if gnl -1? 
-			free(line);
-			err_exit();
-		}
+		err_exit();
 	return (ants_num);	
 }
 
@@ -101,6 +65,7 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 	t_hash *node;
 	
 	i = 0;
+	node = NULL;
 
 	if (!line[i] || line[i] == ' ')
 			err_exit();		
@@ -109,7 +74,10 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 	if (line[i] == ' ')
 	{
 		line[i] = 0;
-		node = assign_to_table(h_table, ft_strdup(line));
+		if (hash_query(h_table, line) == NULL)
+			node = assign_to_table(h_table, ft_strdup(line));
+		else
+			err_exit();
 		printf("%s", line);
 		printf(" %s\n",&line[i + 1]);
 		return(node);
@@ -146,7 +114,6 @@ int	parse_input()
 	printf("\n");
 	print_hash_table(graph->h_table);
 	free_hash_table(graph->h_table);
-
 	free(line);
 	if (graph->start && graph->end)
 			{
@@ -158,5 +125,5 @@ int	parse_input()
 		free(graph);
 		err_exit();
 	}
-	return 0;
+	return 0;	
 }

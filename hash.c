@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 14:44:25 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 02:24:23 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/21 18:03:22 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ t_hash	*assign_to_table(t_hash **table, char *node_name)
 	{
 		t_hash *node;
 		
-		node = table[hash_val]; 
-		while(node)
+		//node = table[hash_val]; 
+		/*while(node)
 		{
 			if (ft_strequ(node_name, node->node_name))
 				err_exit();
 			node = node->next;
-		}
+		}*/
 		node = table[hash_val]; 
 		new = malloc(sizeof(t_hash));
 		new->next = NULL;
@@ -77,7 +77,7 @@ unsigned int	calc_hash(char *node_name)
 		i = 0;
 	
 	while (node_name[i])
-			value = value * 37 + node_name[i++];
+			value = value * HASH_MULT + node_name[i++];
 	return (value % TABLE_SIZE);
 }
 
@@ -93,7 +93,7 @@ void	free_hash_table(t_hash **h_table)
 		if (h_table[i])
 		{		
 			node = h_table[i];
-			while (node)
+			while (node) 
 			{
 				next = node->next;
 				free(node->node_name);
@@ -104,4 +104,25 @@ void	free_hash_table(t_hash **h_table)
 		i++;
 	}
 	free(h_table);
+}
+
+
+t_hash	*hash_query(t_hash **h_table, char *node_name)
+{
+	t_hash *node;
+	unsigned int hash_val;
+
+	hash_val = calc_hash(node_name);
+	
+	if(h_table[hash_val] == NULL)
+		return (NULL);
+	
+	node = h_table[hash_val];	
+	while (node)
+	{
+		if (ft_strequ(node_name, node->node_name))
+			return (node);
+		node = node->next;
+	}
+	return (NULL);
 }
