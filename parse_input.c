@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/22 01:12:34 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/22 01:59:53 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_conn(t_graph *graph, char *line)
 		child = hash_query(graph->h_table, &line[i + 1]);
 		if (parent && child)
 		{
-			new = malloc(sizeof(t_child));
+			new = malloc(sizeof(t_child)); // malloc fail?
 			new->next = NULL;
 			new->c_node = child;
 			
@@ -56,25 +56,19 @@ void	parse_conn(t_graph *graph, char *line)
 
 void	parse_links(t_graph *graph,char *line)
 {
-		
 		parse_conn(graph, line);
 		free(line);
-		//print_hash_table_child(graph->h_table);
-		while (get_next_line(0, &line) > 0)
+		while (get_next_line(0, &line) > 0) //GNL Fail case ???
 		{
 			if (line[0] == '#')
 			{
 				printf("%s\n", line);
+				free(line);
 				continue ;
 			}
 			parse_conn(graph, line);
-			free(line);	
+			free(line);
 		}
-		print_hash_table_child(graph->h_table);
-
-		//printf("%s", line);
-		//free(line);
-		
 }
 
 void	parse_rooms(t_graph *graph)
@@ -97,8 +91,6 @@ void	parse_rooms(t_graph *graph)
 	}
 	if (graph->start && graph->end)
 		parse_links(graph, line);
-	
-		//return (line);
 	else
 		err_exit();
 }
@@ -175,7 +167,7 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 		return (NULL);
 }
 
-int	parse_input()
+t_graph	*parse_input()
 {
 	t_graph *graph = NULL;
 	graph = graph_init();
@@ -183,5 +175,5 @@ int	parse_input()
 		err_exit();
 	parse_rooms(graph);
 	//parse_links(graph);
-	return 0;	
+	return (graph);	
 }

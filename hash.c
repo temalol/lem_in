@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 14:44:25 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/22 01:20:07 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/22 01:57:44 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	free_hash_table(t_hash **h_table)
 	size_t i;
 	t_hash *node;
 	t_hash *next;
+	t_child *child_list;
+	t_child *child_next;
 	
 	i = 0;
 	while(i < TABLE_SIZE)
@@ -99,6 +101,16 @@ void	free_hash_table(t_hash **h_table)
 			{
 				next = node->next;
 				free(node->node_name);
+				if (node->child)
+				{
+					child_list = node->child;
+					while (child_list)
+					{
+						child_next = child_list->next;
+						free(child_list);
+						child_list = child_next;
+					}
+				}
 				free(node);
 				node = next;
 			}

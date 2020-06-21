@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmustach <nmustach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 22:19:16 by nmustach          #+#    #+#             */
-/*   Updated: 2019/10/21 17:44:33 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/22 01:43:33 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int	get_next_line(const int fd, char **line);
 int	validate(char **tmp, char **line, int fd);
 
 # define MFAIL(x) if (!x) return (-1);
-# define BUFF_SIZE 44
+# define BUFF_SIZE 144
 #endif

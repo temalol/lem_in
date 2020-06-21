@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/21 17:08:56 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/22 01:43:44 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(NAME): $(OBJ)
 	@gcc $(FLAGS) -o $(NAME) $(OBJ) -L $(LFTPATH)
 	@echo 'DONE'
 
-%.o : %.c lem_in.h
+%.o : %.c lem_in.h get_next_line.h
 	@gcc $(FLAGS) -c $< -o $@
 	@echo 'Compile $<'
 

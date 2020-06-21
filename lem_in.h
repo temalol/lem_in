@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/22 00:57:55 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/22 01:49:42 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ t_hash				*assign_to_table(t_hash **table, char *node_name);
 void				free_hash_table(t_hash **h_table);
 t_graph				*graph_init();
 
-
 /*
 ** -------------------------- Parsing functions --------------------------------
 */
@@ -69,7 +68,7 @@ t_graph				*graph_init();
 void 				parse_comments(char *line, t_graph *graph);
 int					parse_start_node(char *line, t_graph *graph);
 int					parse_end_node(char *line, t_graph *graph);
-int					parse_input();
+t_graph				*parse_input();
 int					ft_atoi_validate_pos(const char *str);
 t_hash				*parse_node_name(char *line, t_hash **h_table);
 
