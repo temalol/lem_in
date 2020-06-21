@@ -6,11 +6,76 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 22:18:05 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/22 01:12:34 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	parse_conn(t_graph *graph, char *line)
+{
+		t_hash *parent;
+		t_hash *child;
+		t_child *new;
+		t_child *c_list;
+		int i;
+		i = 0;
+		
+
+		if (!line[0])
+			err_exit();
+		while(line[i] != '-' && line[i])	
+			i++;
+		if (!line[i])
+			err_exit();
+		line[i] = 0;
+		parent = hash_query(graph->h_table, line);
+		child = hash_query(graph->h_table, &line[i + 1]);
+		if (parent && child)
+		{
+			new = malloc(sizeof(t_child));
+			new->next = NULL;
+			new->c_node = child;
+			
+			if (parent->child == NULL)
+				parent->child = new;
+			else
+			{
+			c_list = parent->child;
+			while(c_list->next)
+				c_list = c_list->next;
+			c_list->next = new;
+			}
+			printf("%s", line);
+			printf("-%s\n", &line[i + 1]);
+		}
+		else
+			err_exit();
+	
+}
+
+void	parse_links(t_graph *graph,char *line)
+{
+		
+		parse_conn(graph, line);
+		free(line);
+		//print_hash_table_child(graph->h_table);
+		while (get_next_line(0, &line) > 0)
+		{
+			if (line[0] == '#')
+			{
+				printf("%s\n", line);
+				continue ;
+			}
+			parse_conn(graph, line);
+			free(line);	
+		}
+		print_hash_table_child(graph->h_table);
+
+		//printf("%s", line);
+		//free(line);
+		
+}
 
 void	parse_rooms(t_graph *graph)
 {
@@ -31,7 +96,9 @@ void	parse_rooms(t_graph *graph)
 			break;
 	}
 	if (graph->start && graph->end)
-		return ;
+		parse_links(graph, line);
+	
+		//return (line);
 	else
 		err_exit();
 }
@@ -90,7 +157,7 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 	node = NULL;
 
 	if (!line[i] || line[i] == ' ')
-			err_exit();		
+			err_exit();
 	while(line[i] != ' ' && line[i])	
 			i++;
 	if (line[i] == ' ')
@@ -115,5 +182,6 @@ int	parse_input()
 	if ((graph->ants_num = parse_ants_number()) < 1)
 		err_exit();
 	parse_rooms(graph);
+	//parse_links(graph);
 	return 0;	
 }
