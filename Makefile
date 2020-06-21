@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/22 01:43:44 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/22 03:11:30 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,13 @@ FLAGS = -Wall -Wextra -Werror
 
 #PFTPATH = ../ft_printf/ -lftprintf
 
+OBJDIR = objs
+
 LFTPATH = ./libft -lft
 
 SRC = main.c parse_input.c get_next_line.c ft_atoi_validate_pos.c hash.c debug_functions.c parse_functions.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 all: $(NAME)
 
@@ -29,7 +31,7 @@ $(NAME): $(OBJ)
 	@gcc $(FLAGS) -o $(NAME) $(OBJ) -L $(LFTPATH)
 	@echo 'DONE'
 
-%.o : %.c lem_in.h get_next_line.h
+$(OBJDIR)/%.o : %.c lem_in.h get_next_line.h
 	@gcc $(FLAGS) -c $< -o $@
 	@echo 'Compile $<'
 

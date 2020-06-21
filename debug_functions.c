@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 18:27:05 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/22 02:36:54 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/22 03:12:05 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	print_hash_table_child(t_hash **h_table)
 	//char *f_end = "hash[%zu]=\"%s\"";
 	char *f_ch_next = " \"%s\" =>";
 	char *f_ch_end = " \"%s\" ";
-	//char *format;
 	
 	i = 0;
 	while(i < TABLE_SIZE)
