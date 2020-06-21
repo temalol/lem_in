@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/22 03:41:52 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/22 03:47:54 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ $(NAME): $(OBJ)
 	@echo 'DONE'
 
 $(OBJDIR)/%.o : %.c $(HEADERS)
+	@mkdir -p $(@D)
 	@gcc $(FLAGS) -c $< -o $@
 	@echo 'Compile $<'
 
