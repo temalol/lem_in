@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 22:19:16 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/22 03:10:06 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/24 23:03:25 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int	get_next_line(const int fd, char **line);
 int	validate(char **tmp, char **line, int fd);
 
 # define MFAIL(x) if (!x) return (-1);
-# define BUFF_SIZE 144
+# define BUFF_SIZE 2000
 #endif
