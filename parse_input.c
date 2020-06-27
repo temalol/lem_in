@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/27 21:19:27 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 22:19:56 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	parse_conn(t_graph *graph, char *links_str)
 				c_list = c_list->next;
 			c_list->next = new;
 			}
-			printf("%s", line);
-			printf("-%s\n", &line[i + 1]);
+			// printf("%s", line);
+			// printf("-%s\n", &line[i + 1]);
 			free(line);
 		}
 		else
@@ -64,7 +64,7 @@ void	parse_links(t_graph *graph,char *line)
 		{
 			if (str_ret[0] == '#')
 			{
-				printf("%s\n", str_ret);
+				// printf("%s\n", str_ret);
 				continue ;
 			}
 			parse_conn(graph, str_ret);
@@ -114,8 +114,6 @@ void parse_comments(char *line, t_graph *graph)
 			err_exit();
 	}
 	
-	if (line[0] == '#')
-			printf("%s\n", line);
 }
 
 void 	parse_ants_number(t_graph *graph)
@@ -128,7 +126,7 @@ void 	parse_ants_number(t_graph *graph)
 			ants_num = ft_atoi_validate_pos(ret);
 			if (ants_num > 0)
 				{
-					printf("%d\n", ants_num);
+					// printf("%d\n", ants_num);
 					graph->ants_num = ants_num;
 				}
 			else
@@ -158,8 +156,8 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 			node = assign_to_table(h_table, ft_strdup(line));
 		else
 			err_exit();
-		printf("%s", line);
-		printf(" %s\n",&line[i + 1]);
+		// printf("%s", line);
+		// printf(" %s\n",&line[i + 1]);
 		line[i] = ' ';
 		return(node);
 	}

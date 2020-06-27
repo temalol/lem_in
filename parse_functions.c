@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 17:08:45 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/27 21:18:28 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 22:09:14 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	parse_start_node(char *line, t_graph *graph)
 	
 	if (ft_strequ("##start", line))
 			{
-				printf("%s\n", line);
+				// printf("%s\n", line);
 				if (graph->start)
 					err_exit();
 				if(((str_ret = gnl(graph->map_buf)) != NULL) && (node = parse_node_name(str_ret, graph->h_table)))
@@ -53,7 +53,7 @@ int	parse_end_node(char *line, t_graph *graph)
 	
 	if (ft_strequ("##end", line))
 		{
-			printf("%s\n", line);
+			// printf("%s\n", line);
 			if (graph->end)
 					err_exit();
 				if(((str_ret = gnl(graph->map_buf)) != NULL) && (node = parse_node_name(str_ret, graph->h_table)))
