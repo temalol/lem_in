@@ -6,23 +6,21 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/27 23:38:09 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 00:41:17 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	parse_conn(t_graph *graph, char *links_str)
+void	parse_conn(t_graph *graph, char *line)
 {
 		t_hash *parent;
 		t_hash *child;
 		t_child *new;
 		t_child *c_list;
-		char	*line = ft_strdup(links_str); // Do you really need this?
 		int i;
 		i = 0;
 		
-		ml++;
 		if (!line[0])
 			err_exit();
 		while(line[i] != '-' && line[i])	
@@ -32,10 +30,10 @@ void	parse_conn(t_graph *graph, char *links_str)
 		line[i] = 0;
 		parent = hash_query(graph->h_table, line);
 		child = hash_query(graph->h_table, &line[i + 1]);
+		line[i] = '-';
 		if (parent && child)
 		{
-			new = malloc(sizeof(t_child)); // malloc fail?
-			ml++;
+			MFAIL((new = malloc(sizeof(t_child)))); 
 			new->next = NULL;
 			new->c_node = child;
 			
@@ -50,8 +48,6 @@ void	parse_conn(t_graph *graph, char *links_str)
 			}
 			// printf("%s", line);
 			// printf("-%s\n", &line[i + 1]);
-			free(line);
-				fr++;
 		}
 		else
 			err_exit();

@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/27 17:21:53 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/27 23:32:09 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 00:35:32 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ char 	*read_to_str(fd)
 	 char *buf;
 	int ret;
 	
-	buf = malloc((sizeof(char) * 10000));
-		ml++;
+	MFAIL((buf = malloc(sizeof(char) * 10000)));
 	
 	while ((ret = read(fd, read_buf, 1500)) > 0)
 	{
