@@ -6,10 +6,13 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:10:51 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/27 22:18:27 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 23:40:17 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+unsigned long ml = 0;
+unsigned long fr = 0;
 
 #include "lem_in.h"
 
@@ -24,5 +27,8 @@ int	main(int argc, char **argv)
 	 write(1, graph->map_buf, ft_strlen(graph->map_buf));
 	 free_hash_table(graph->h_table);
 	 free(graph->map_buf);
+	 fr++;
 	 free(graph);
+	 fr++;
+	 printf("\nMalloc:%lu Free:%lu",ml, fr);
 }

@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/27 22:19:56 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 23:38:09 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	parse_conn(t_graph *graph, char *links_str)
 		int i;
 		i = 0;
 		
-		
+		ml++;
 		if (!line[0])
 			err_exit();
 		while(line[i] != '-' && line[i])	
@@ -35,6 +35,7 @@ void	parse_conn(t_graph *graph, char *links_str)
 		if (parent && child)
 		{
 			new = malloc(sizeof(t_child)); // malloc fail?
+			ml++;
 			new->next = NULL;
 			new->c_node = child;
 			
@@ -50,6 +51,7 @@ void	parse_conn(t_graph *graph, char *links_str)
 			// printf("%s", line);
 			// printf("-%s\n", &line[i + 1]);
 			free(line);
+				fr++;
 		}
 		else
 			err_exit();
@@ -153,7 +155,10 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 	{
 		line[i] = 0;
 		if (!hash_query(h_table, line))
-			node = assign_to_table(h_table, ft_strdup(line));
+			{
+				node = assign_to_table(h_table, ft_strdup(line));
+				ml++;
+			}
 		else
 			err_exit();
 		// printf("%s", line);
@@ -172,6 +177,5 @@ t_graph	*parse_input()
 	graph->map_buf = read_to_str(0);
 	parse_ants_number(graph);
 	 parse_rooms(graph);
-	//parse_links(graph);
 	return (graph);	
 }

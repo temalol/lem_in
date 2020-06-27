@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/27 17:29:38 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 23:57:05 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # define HASH_MULT 37
 
 struct s_hash;
+
+extern unsigned long ml;
+extern unsigned long fr;
+
+#define FCNT(x) fr++;
 
 typedef struct s_child
 {
@@ -45,10 +50,9 @@ typedef struct s_graph
 	
 } t_graph ;
 
-
-# include "get_next_line.h"
 # include <stdio.h>
-
+# include <unistd.h>
+# include "libft/libft.h"
 
 /*
 ** -------------------------- Hash table functions --------------------------------

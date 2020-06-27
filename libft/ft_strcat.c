@@ -6,13 +6,13 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 22:04:08 by nmustach          #+#    #+#             */
-/*   Updated: 2019/09/12 22:13:17 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 23:04:43 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *restrict s1, const char *restrict s2)
+void	ft_strcat(char *restrict s1, const char *restrict s2)
 {
 	char	*str2;
 	int		cnt;
@@ -30,5 +30,5 @@ char	*ft_strcat(char *restrict s1, const char *restrict s2)
 		cnt++;
 	}
 	s1[len] = '\0';
-	return (s1);
+	//return (s1);
 }

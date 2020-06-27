@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmustach <nmustach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 19:27:53 by nmustach          #+#    #+#             */
-/*   Updated: 2019/09/18 23:26:37 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 23:05:17 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 void	ft_memdel(void **ap);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
-char	*ft_strcat(char *restrict s1, const char *restrict s2);
+void	ft_strcat(char *restrict s1, const char *restrict s2);
 char	*ft_strchr(const char *s, int c);
 void	ft_strclr(char *s);
 int		ft_strcmp(const char *s1, const char *s2);
