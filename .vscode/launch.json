@@ -8,14 +8,14 @@
 			"name": "gcc - Build and debug active file",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/Users/artem/lem_in/lem_in",
+			"program": "${workspaceFolder}/lem_in",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "/Users/artem/lem_in",
+			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"setupCommands": [{"text": "settings set target.input-path /Users/artem/lem_in/maps/file_subj_coll.map"}]
+			"setupCommands": [{"text": "settings set target.input-path ${workspaceFolder}/maps/file_subj_coll.map"}]
 		}
 	]
 }
