@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:10:51 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/22 03:09:11 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 21:20:00 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	main(int argc, char **argv)
 	(void)(argc);
 	(void)(argv);
 	 graph = parse_input();
-	 printf("\nStart node:%s\nEnd node:%s\n\n", graph->start->node_name, graph->end->node_name);
-	 print_hash_table_child(graph->h_table);
-	 free_hash_table(graph->h_table);
-	 free(graph);
+	 printf("\n\n%s", graph->map_buf);
+	// //  printf("\nStart node:%s\nEnd node:%s\n\n", graph->start->node_name, graph->end->node_name);
+	//  print_hash_table_child(graph->h_table);
+	//  free_hash_table(graph->h_table);
+	//  free(graph);
 }

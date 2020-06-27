@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 17:08:45 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/21 22:14:26 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 21:18:28 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,20 @@ t_graph	*graph_init()
 int	parse_start_node(char *line, t_graph *graph)
 {
 	t_hash *node;
+	char *str_ret;
 	
 	if (ft_strequ("##start", line))
 			{
 				printf("%s\n", line);
-				free(line);
 				if (graph->start)
 					err_exit();
-				if(get_next_line(0, &line) && (node = parse_node_name(line, graph->h_table)))
+				if(((str_ret = gnl(graph->map_buf)) != NULL) && (node = parse_node_name(str_ret, graph->h_table)))
 				{
 						graph->start = node;
-						free(line);
 						return (1);
 				}
 				else
 				{
-					free(line);
 					err_exit();
 				}	
 			}
@@ -51,22 +49,20 @@ int	parse_start_node(char *line, t_graph *graph)
 int	parse_end_node(char *line, t_graph *graph)
 {
 	t_hash *node;
+	char	*str_ret;
 	
 	if (ft_strequ("##end", line))
 		{
 			printf("%s\n", line);
-			free(line);
 			if (graph->end)
 					err_exit();
-				if(get_next_line(0, &line) && (node = parse_node_name(line, graph->h_table)))
+				if(((str_ret = gnl(graph->map_buf)) != NULL) && (node = parse_node_name(str_ret, graph->h_table)))
 				{
 						graph->end = node;
-						free(line);
 						return (1);
 				}
 				else
 				{
-					free(line);
 					err_exit();
 				}	
 			}

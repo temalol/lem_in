@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/24 00:43:28 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/27 17:52:15 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OPFLAGS = -O2
 
 LFTPATH = ./libft -lft
 
-SRC = main.c parse_input.c get_next_line.c ft_atoi_validate_pos.c hash.c debug_functions.c parse_functions.c
+SRC = main.c parse_input.c get_next_line.c ft_atoi_validate_pos.c hash.c debug_functions.c parse_functions.c gnl.c
 
 OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
  
@@ -35,12 +35,12 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@echo 'Linking... '
 	@make -s -C $(LFTPATH)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) -L $(LFTPATH)
+	@$(CC) -g $(FLAGS) -o $(NAME) $(OBJ) -L $(LFTPATH)
 	@echo 'DONE'
 
 $(OBJDIR)/%.o : %.c $(HEADERS) Makefile
 	@mkdir -p $(@D) 
-	@$(CC) $(OPFLAGS) $(FLAGS) -c $< -o $@ 
+	@$(CC) -g $(OPFLAGS) $(FLAGS) -c $< -o $@ 
 	@echo 'Compile $<' 
 
 clean:

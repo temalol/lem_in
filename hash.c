@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 14:44:25 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/26 03:52:35 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 18:06:56 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_hash	**hash_table_init()
 	
 	while(i < TABLE_SIZE)
 	{
-		*hash_table = NULL;
+		hash_table[i] = NULL;
 		i++;
 	}
 	return(hash_table);

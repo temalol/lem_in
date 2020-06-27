@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/22 03:33:56 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/27 17:29:38 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_graph
 	t_hash *start;
 	t_hash *end;
 	int ants_num;
+	char *map_buf;
 	
 } t_graph ;
 
@@ -71,6 +72,8 @@ int					parse_end_node(char *line, t_graph *graph);
 t_graph				*parse_input();
 int					ft_atoi_validate_pos(const char *str);
 t_hash				*parse_node_name(char *line, t_hash **h_table);
+char 				*read_to_str(int fd);
+char				*gnl(char *text);
 
 
 /*
