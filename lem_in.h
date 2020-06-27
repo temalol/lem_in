@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/28 00:38:13 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 02:52:04 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ struct s_hash;
 extern unsigned long ml;
 extern unsigned long fr;
 
-# define FCNT(x) fr++;
-# define MFAIL(x) if (!x) exit(0); else ml++;
-
+# define FCNT(x) x; fr++
+# define MFAIL(x) if (!x) err_exit(); else ml++;
+	
 typedef struct	s_child
 {
 	struct s_hash *c_node;

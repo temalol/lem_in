@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 14:44:25 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/27 23:48:21 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 02:55:53 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,27 +87,24 @@ void	free_hash_table(t_hash **h_table)
 			while (node)
 			{
 				next = node->next;
-				FCNT(free(node->node_name))
+				FCNT(free(node->node_name));
 				if (node->child)
 				{
 					child_list = node->child;
 					while (child_list)
 					{
 						child_next = child_list->next;
-						free(child_list);
-							fr++;
+						FCNT(free(child_list));
 						child_list = child_next;
 					}
 				}
-				free(node);
-					fr++;
+				FCNT(free(node));
 				node = next;
 			}
 		}
 		i++;
 	}
-	free(h_table);
-	fr++;
+	FCNT(free(h_table));
 }
 
 

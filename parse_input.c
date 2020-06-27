@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/28 00:41:17 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 01:35:26 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	parse_rooms(t_graph *graph)
 		if ((node_ret = parse_node_name(str_ret, graph->h_table)))
 			continue ;
 		else
-			 break;
+			break;
 	}
 	if (graph->start && graph->end)
 		parse_links(graph, str_ret);
@@ -105,7 +105,7 @@ void parse_comments(char *line, t_graph *graph)
 	if (line[0] == '#' && line[1] == '#')
 	{
 		if (parse_start_node(line, graph))
-			return ;	
+			return ;
 		else if (parse_end_node(line, graph))
 			return ;
 		else

@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/27 23:55:24 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/28 01:33:37 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OPFLAGS = -O2
 
 LFTPATH = ./libft -lft
 
-SRC = main.c parse_input.c  ft_atoi_validate_pos.c hash.c debug_functions.c parse_functions.c gnl.c
+SRC = main.c parse_input.c ft_atoi_validate_pos.c hash.c debug_functions.c parse_functions.c gnl.c
 
 OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
  

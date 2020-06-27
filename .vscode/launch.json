@@ -15,7 +15,7 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"setupCommands": [{"text": "settings set target.input-path ${workspaceFolder}/maps/file_subj_coll.map"}]
+			"setupCommands": [{"text": "settings set target.input-path ${workspaceFolder}/maps/subject3.map"}]
 		}
 	]
 }
