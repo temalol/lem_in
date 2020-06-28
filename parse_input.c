@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/28 14:47:36 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 16:26:56 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void parse_comments(char *line, t_graph *graph)
 		else
 			err_exit();
 	}
-	
 }
 
 void 	parse_ants_number(t_graph *graph)
@@ -139,6 +138,7 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 {
 	int i;
 	t_hash *node;
+	char	*strdup;
 	
 	i = 0;
 	node = NULL;
@@ -152,8 +152,8 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 		line[i] = 0;
 		if (!hash_query(h_table, line))
 			{
-				node = assign_to_table(h_table, ft_strdup(line));
-				ml++;
+				MFAIL((strdup = ft_strdup(line)));
+				node = assign_to_table(h_table, strdup);
 			}
 		else
 			err_exit();
@@ -172,6 +172,6 @@ t_graph	*parse_input()
 	graph = graph_init();
 	graph->map_buf = read_to_str(0);
 	parse_ants_number(graph);
-	 parse_rooms(graph);
+	parse_rooms(graph);
 	return (graph);	
 }

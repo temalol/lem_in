@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 17:08:45 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/27 23:33:03 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 16:22:27 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ t_graph	*graph_init()
 {
 	t_graph *graph;
 	
-	graph = malloc(sizeof(t_graph));
-	ml++;
+	MFAIL((graph = malloc(sizeof(t_graph))));
 	graph->start = NULL;
 	graph->end = NULL;
 	graph->h_table = hash_table_init();

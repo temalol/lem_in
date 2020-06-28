@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 14:44:25 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/28 02:55:53 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 16:21:51 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ t_hash	**hash_table_init()
 	t_hash **hash_table;
 	
 	i = 0;
-	hash_table = malloc(sizeof(t_hash*) * TABLE_SIZE);
-		ml++;
-	
+	MFAIL((hash_table = malloc(sizeof(t_hash*) * TABLE_SIZE)));
 	while(i < TABLE_SIZE)
 	{
 		hash_table[i] = NULL;
@@ -36,8 +34,7 @@ t_hash	*assign_to_table(t_hash **table, char *node_name)
 	
 	hash_val = calc_hash(node_name);
 	
-		new = malloc(sizeof(t_hash));
-		ml++;
+		MFAIL((new = malloc(sizeof(t_hash))));
 		new->next = NULL;
 		new->child = NULL;
 		new->x = 0;
