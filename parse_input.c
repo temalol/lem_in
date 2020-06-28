@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/28 01:35:26 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 14:47:36 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_conn(t_graph *graph, char *line)
 		int i;
 		i = 0;
 		
-		if (!line[0])
+		if (!line)
 			err_exit();
 		while(line[i] != '-' && line[i])	
 			i++;
