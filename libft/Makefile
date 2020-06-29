@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nmustach <nmustach@student.42.fr>          +#+  +:+       +#+         #
+#    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 16:38:23 by nmustach          #+#    #+#              #
-#    Updated: 2019/09/22 20:13:14 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/29 04:21:01 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,12 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
 HEAD = ./
 BIN = $(SRCS:.c=.o)  
 
-.PHONY: clean fclean all re
+
+
+##DEPS = $(SRCS:.c=./deps/.d)
+CFLAGS = -Wall -Wextra -Werror -MD
+CC = clang
+
 
 all: $(NAME)
 
@@ -35,9 +40,10 @@ $(NAME): $(BIN)
 	ar rc $(NAME) $(BIN)
 	ranlib $(NAME)
      
-      %.o : %.c $(HEADER)\
-      gcc -c $< -I$(HEAD) -Wall -Wextra -Werror
-
+     
+#%.o : %.c Makefile \
+#	$(CC) $(CFLAGS) -MD -c $< -o $@
+	  
 clean:
 	rm -f $(BIN)
 

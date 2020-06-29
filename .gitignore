@@ -3,3 +3,5 @@
 lem_in
 *.a
 *.out
+.DS_Store
+*.d

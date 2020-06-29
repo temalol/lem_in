@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/28 01:33:37 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/29 04:22:25 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror
 
 HEADERS = lem_in.h
 
-OBJDIR = objs
+OBJDIR = objs/
 
 CC = clang
 
@@ -26,22 +26,24 @@ OPFLAGS = -O2
 
 LFTPATH = ./libft -lft
 
-SRC = main.c parse_input.c ft_atoi_validate_pos.c hash.c debug_functions.c parse_functions.c gnl.c
+SRC = $(wildcard *.c)
 
-OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
+OBJ = $(addprefix $(OBJDIR),$(SRC:.c=.o))
  
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo 'Linking... '
-	@make -s -C $(LFTPATH)
-	@$(CC) -g $(FLAGS) -o $(NAME) $(OBJ) -L $(LFTPATH)
-	@echo 'DONE'
+		@echo 'Linking $@... '
+		@make -s -C $(LFTPATH)
+		@$(CC) -g $(FLAGS) -o $(NAME) $(OBJ) -L $(LFTPATH)
+		@echo 'DONE'
 
-$(OBJDIR)/%.o : %.c $(HEADERS) Makefile
-	@mkdir -p $(@D) 
-	@$(CC) -g $(OPFLAGS) $(FLAGS) -c $< -o $@ 
-	@echo 'Compile $<' 
+include $(wildcard $(OBJDIR)*.d)  
+
+$(OBJDIR)%.o : %.c
+		@mkdir -p $(@D)
+		@$(CC) -g -MMD $(OPFLAGS) $(FLAGS) -c $< -o $@
+		@echo 'Compile $<'
 
 clean:
 		@echo 'rm object files..'
@@ -55,3 +57,4 @@ fclean:
 		@echo 'DONE'
 
 re: fclean all
+

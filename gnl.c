@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/27 17:21:53 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/28 14:29:16 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/28 20:35:51 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,31 @@ char	*gnl(char *text)
 
 char 	*read_to_str(fd)
 {
-	char read_buf[1501];
+	char read_buf[1001];
 	char *buf;
 	int ret;
+	int buf_s = 0;
+	int mem_buf = 5000;
 	
-	MFAIL((buf = (char*)malloc(sizeof(char) * 10000)));
+	MFAIL((buf = (char*)malloc(sizeof(char) * mem_buf)));
 	
 	buf[0] = 0;
 		
-	while ((ret = read(fd, read_buf, 1500)) > 0)
+	while ((ret = read(fd, read_buf, 1000)) > 0)
 	{
+		if (buf_s + ret >= mem_buf)
+			{
+			mem_buf = mem_buf * 2;
+			char *new;
+			MFAIL((new = (char*)malloc(sizeof(char) * mem_buf)));
+				new[0] = 0;
+				ft_strcat(new,buf);
+				FCNT(free(buf));
+				buf = new;
+			}
 		read_buf[ret] = '\0';
 	  	ft_strcat(buf, read_buf);
+		buf_s += 1000;
 	}
 	return (buf);
  }
