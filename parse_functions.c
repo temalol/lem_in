@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 17:08:45 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/28 16:22:27 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/01 03:05:38 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	parse_start_node(char *line, t_graph *graph)
 	
 	if (ft_strequ("##start", line))
 			{
-				// printf("%s\n", line);
 				if (graph->start)
 					err_exit();
 				if(((str_ret = gnl(graph->map_buf)) != NULL) && (node = parse_node_name(str_ret, graph->h_table)))
@@ -39,9 +38,7 @@ int	parse_start_node(char *line, t_graph *graph)
 						return (1);
 				}
 				else
-				{
 					err_exit();
-				}	
 			}
 	return (0);
 }
@@ -53,7 +50,6 @@ int	parse_end_node(char *line, t_graph *graph)
 	
 	if (ft_strequ("##end", line))
 		{
-			// printf("%s\n", line);
 			if (graph->end)
 					err_exit();
 				if(((str_ret = gnl(graph->map_buf)) != NULL) && (node = parse_node_name(str_ret, graph->h_table)))
@@ -62,9 +58,43 @@ int	parse_end_node(char *line, t_graph *graph)
 						return (1);
 				}
 				else
-				{
 					err_exit();
-				}	
 			}
 			return (0);
+}
+
+void	check_if_linked(t_hash *haystack, t_hash *needle)
+{		
+	t_child *c_node_hay;
+	
+	c_node_hay = haystack->child;
+	
+	while (c_node_hay)
+	{
+		if (c_node_hay->c_node == needle)
+			err_exit();
+		c_node_hay = c_node_hay->next;
+	}
+}
+
+void	add_link(t_hash *parent, t_hash *child)
+{
+			
+		t_child *new;
+		t_child *c_list;
+
+			
+		MFAIL((new = malloc(sizeof(t_child)))); 
+		new->next = NULL;
+		new->c_node = child;
+			
+		if (parent->child == NULL)
+			parent->child = new;	
+		else
+		{
+			c_list = parent->child;
+		while(c_list->next)
+			c_list = c_list->next;
+		c_list->next = new;
+		}
 }

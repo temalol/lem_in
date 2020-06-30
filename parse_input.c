@@ -6,19 +6,17 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/01 00:09:30 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/01 03:00:28 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 int	get_spaces(char *str, size_t *sp)
-{
-	
+{	
 	size_t i;
 
 	i = 0;
-
 	while(str[i] != ' ' && str[i])
 		i++;
 	if (!str[i])
@@ -32,21 +30,18 @@ int	get_spaces(char *str, size_t *sp)
 		return (0);
 	str[i] = 0;
 	sp[1] = i;
-	
 	return (1);
 }
 
 
 
-void	parse_conn(t_graph *graph, char *line)
+void	parse_connections(t_graph *graph, char *line)
 {
 		t_hash *parent;
 		t_hash *child;
-		t_child *new;
-		t_child *c_list;
 		int i;
-		i = 0;
 		
+		i = 0;
 		if (!line)
 			err_exit();
 		while(line[i] != '-' && line[i])	
@@ -57,23 +52,12 @@ void	parse_conn(t_graph *graph, char *line)
 		parent = hash_query(graph->h_table, line);
 		child = hash_query(graph->h_table, &line[i + 1]);
 		line[i] = '-';
-		if (parent && child)
+		if ((parent && child) && (parent != child))
 		{
-			MFAIL((new = malloc(sizeof(t_child)))); 
-			new->next = NULL;
-			new->c_node = child;
-			
-			if (parent->child == NULL)
-				parent->child = new;
-			else
-			{
-			c_list = parent->child;
-			while(c_list->next)
-				c_list = c_list->next;
-			c_list->next = new;
-			}
-			// printf("%s", line);
-			// printf("-%s\n", &line[i + 1]);
+			check_if_linked(parent, child);
+			check_if_linked(child, parent);
+			add_link(parent, child);
+			add_link(child, parent);
 		}
 		else
 			err_exit();
@@ -83,15 +67,16 @@ void	parse_conn(t_graph *graph, char *line)
 void	parse_links(t_graph *graph,char *line)
 {
 		char *str_ret;
-		parse_conn(graph, line);
-		while ((str_ret = gnl(graph->map_buf)) != NULL) // FAIL?
+		parse_connections(graph, line);
+		while ((str_ret = gnl(graph->map_buf)) != NULL)
 		{
 			if (str_ret[0] == '#')
 			{
-				// printf("%s\n", str_ret);
+				if (str_ret[0] == '#' && str_ret[1] == '#')
+					err_exit();
 				continue ;
 			}
-			parse_conn(graph, str_ret);
+			parse_connections(graph, str_ret);
 		}
 }
 
@@ -148,10 +133,7 @@ void 	parse_ants_number(t_graph *graph)
 		{
 			ants_num = ft_atoi_validate_pos(ret);
 			if (ants_num > 0)
-				{
-					// printf("%d\n", ants_num);
 					graph->ants_num = ants_num;
-				}
 			else
 				err_exit();
 		}
@@ -207,5 +189,7 @@ t_graph	*parse_input()
 	graph->map_buf = read_to_str(0);
 	parse_ants_number(graph);
 	parse_rooms(graph);
-	return (graph);	
+	 if (!graph->start->child)
+		err_exit();
+	return (graph);
 }
