@@ -1,6 +1,6 @@
 *.o
 *.dSYM
-lem_in
+lem-in
 *.a
 *.out
 .DS_Store

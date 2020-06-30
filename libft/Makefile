@@ -6,7 +6,7 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 16:38:23 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/29 04:21:01 by nmustach         ###   ########.fr        #
+#    Updated: 2020/06/29 04:54:16 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ BIN = $(SRCS:.c=.o)
 
 
 
-##DEPS = $(SRCS:.c=./deps/.d)
 CFLAGS = -Wall -Wextra -Werror -MD
 CC = clang
 

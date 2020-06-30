@@ -6,11 +6,11 @@
 #    By: nmustach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 19:44:11 by nmustach          #+#    #+#              #
-#    Updated: 2020/06/29 04:22:25 by nmustach         ###   ########.fr        #
+#    Updated: 2020/07/01 00:00:11 by nmustach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -40,9 +40,9 @@ $(NAME): $(OBJ)
 
 include $(wildcard $(OBJDIR)*.d)  
 
-$(OBJDIR)%.o : %.c
+$(OBJDIR)%.o : %.c Makefile
 		@mkdir -p $(@D)
-		@$(CC) -g -MMD $(OPFLAGS) $(FLAGS) -c $< -o $@
+		@$(CC) -g -MMD  $(FLAGS) -c $< -o $@
 		@echo 'Compile $<'
 
 clean:

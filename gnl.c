@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/27 17:21:53 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/28 20:35:51 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/30 15:59:57 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 char	*gnl(char *text)
 {
 	static int i;
+	int b;
 	
+	b = 0;
 	if (i == 0 && (!text[0]))
 		return NULL;
 	if (i < 0)
@@ -26,8 +28,6 @@ char	*gnl(char *text)
 		text = &text[i + 1];
 		i += 1;
 	}
-	
-	int b = 0;
 	if (!text[0])
 		return NULL;
 	while(text[b] != '\n' && text[b])

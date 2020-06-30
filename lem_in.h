@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/29 04:23:22 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/06/30 17:18:38 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct		s_graph
 t_hash				*hash_query(t_hash **h_table, char *node_name);
 unsigned int		calc_hash(char *str);
 t_hash				**hash_table_init();
-void				err_exit();
 t_hash				*assign_to_table(t_hash **table, char *node_name);
 void				free_hash_table(t_hash **h_table);
 t_graph				*graph_init();
@@ -76,6 +75,8 @@ int					ft_atoi_validate_pos(const char *str);
 t_hash				*parse_node_name(char *line, t_hash **h_table);
 char				*read_to_str(int fd);
 char				*gnl(char *text);
+void				err_exit();
+
 
 /*
 ** -------------------------- Debug functions --------------------------------

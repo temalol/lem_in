@@ -6,11 +6,37 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/29 04:23:35 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/01 00:09:30 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+int	get_spaces(char *str, size_t *sp)
+{
+	
+	size_t i;
+
+	i = 0;
+
+	while(str[i] != ' ' && str[i])
+		i++;
+	if (!str[i])
+		return (0);
+	str[i] = 0;
+	sp[0] = i;
+	i++;
+	while(str[i] != ' ' && str[i])
+		i++;
+	if (!str[i])
+		return (0);
+	str[i] = 0;
+	sp[1] = i;
+	
+	return (1);
+}
+
+
 
 void	parse_conn(t_graph *graph, char *line)
 {
@@ -96,7 +122,7 @@ void	parse_rooms(t_graph *graph)
 
 void	err_exit()
 {
-	write(STDERR_FILENO, "ERROR\n", 6);
+	write(1, "ERROR\n", 6);
 	exit(1);
 }
 
@@ -136,34 +162,42 @@ void 	parse_ants_number(t_graph *graph)
 
 t_hash	*parse_node_name(char *line, t_hash **h_table)
 {
-	int i;
+	size_t i;
 	t_hash *node;
 	char	*strdup;
+	size_t	sp_ind[2];
+	int l_x;
+	int l_y;
 	
 	i = 0;
 	node = NULL;
 
-	if (!line[i] || line[i] == ' ')
-			err_exit();
-	while(line[i] != ' ' && line[i])	
-			i++;
-	if (line[i] == ' ')
+	if (!line || line[i] == ' ' || line[i] == 'L' )
+	 		err_exit();
+	if (get_spaces(line, sp_ind))
 	{
-		line[i] = 0;
 		if (!hash_query(h_table, line))
 			{
 				MFAIL((strdup = ft_strdup(line)));
 				node = assign_to_table(h_table, strdup);
+				l_x = ft_atoi_validate_pos(&line[sp_ind[0] + 1]);
+				l_y = ft_atoi_validate_pos(&line[sp_ind[1] + 1]);
+				if (l_x >=0 && l_y >= 0)
+					{
+						node->x = l_x;
+						node->y = l_y;
+					}
+					else
+						err_exit();
+				line[sp_ind[0]] = ' ';
+				line[sp_ind[1]] = ' ';
 			}
 		else
 			err_exit();
-		// printf("%s", line);
-		// printf(" %s\n",&line[i + 1]);
-		line[i] = ' ';
 		return(node);
 	}
-	else
-		return (NULL);
+		else
+			return (NULL);
 }
 
 t_graph	*parse_input()
