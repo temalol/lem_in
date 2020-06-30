@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/01 03:00:06 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/01 03:19:57 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_hash				*assign_to_table(t_hash **table, char *node_name);
 void				free_hash_table(t_hash **h_table);
 t_graph				*graph_init();
 void				add_link(t_hash *parent, t_hash *child);
-void				check_if_linked(t_hash *haystack, t_hash *needle);
+void				check_if_already_linked(t_hash *haystack, t_hash *needle);
 
 
 /*

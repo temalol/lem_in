@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/01 03:00:28 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/01 03:19:47 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	parse_connections(t_graph *graph, char *line)
 		line[i] = '-';
 		if ((parent && child) && (parent != child))
 		{
-			check_if_linked(parent, child);
-			check_if_linked(child, parent);
+			check_if_already_linked(parent, child);
+			check_if_already_linked(child, parent);
 			add_link(parent, child);
 			add_link(child, parent);
 		}
@@ -189,7 +189,7 @@ t_graph	*parse_input()
 	graph->map_buf = read_to_str(0);
 	parse_ants_number(graph);
 	parse_rooms(graph);
-	 if (!graph->start->child)
+	 if (!graph->start->child || !graph->end->child)
 		err_exit();
 	return (graph);
 }

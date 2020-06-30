@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 17:08:45 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/01 03:05:38 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/01 03:20:11 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	parse_end_node(char *line, t_graph *graph)
 			return (0);
 }
 
-void	check_if_linked(t_hash *haystack, t_hash *needle)
+void	check_if_already_linked(t_hash *haystack, t_hash *needle)
 {		
 	t_child *c_node_hay;
 	
@@ -78,12 +78,10 @@ void	check_if_linked(t_hash *haystack, t_hash *needle)
 }
 
 void	add_link(t_hash *parent, t_hash *child)
-{
-			
+{			
 		t_child *new;
 		t_child *c_list;
 
-			
 		MFAIL((new = malloc(sizeof(t_child)))); 
 		new->next = NULL;
 		new->c_node = child;
