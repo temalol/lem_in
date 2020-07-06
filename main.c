@@ -6,12 +6,13 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:10:51 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/01 03:03:03 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 00:42:03 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 unsigned long ml = 0;
 unsigned long fr = 0;
+unsigned long nodes_num = 0;
 
 #include "lem_in.h"
 
@@ -27,11 +28,11 @@ int	main()
 {
 	t_graph *graph;
 	 graph = parse_input();
-	 write(1, graph->map_buf, ft_strlen(graph->map_buf));
-		printf("\n\n");
-		print_hash_table_child(graph->h_table);
-	 printf("\nStart node:%s\nEnd node:%s\n", graph->start->node_name, graph->end->node_name);
+	//  write(1, graph->map_buf, ft_strlen(graph->map_buf));
+		bfs(graph);
+		// printf("\n\nNodes_num %lu", nodes_num);
+		//  print_hash_table_child(graph->h_table);
+	//  printf("\nStart node:%s\nEnd node:%s\n", graph->start->node_name, graph->end->node_name);
 	 free_graph(graph);
-	 printf("\nMalloc:%lu Free:%lu\n",ml, fr);
-	 
+	//  printf("\nMalloc:%lu Free:%lu\n",ml, fr);
 }

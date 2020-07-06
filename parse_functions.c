@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 17:08:45 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/01 03:20:11 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/05 15:29:11 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	check_if_already_linked(t_hash *haystack, t_hash *needle)
 	while (c_node_hay)
 	{
 		if (c_node_hay->c_node == needle)
-			err_exit();
+				err_exit();			
 		c_node_hay = c_node_hay->next;
 	}
 }

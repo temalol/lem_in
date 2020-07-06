@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/01 03:19:57 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 02:14:19 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ struct s_hash;
 
 extern unsigned long ml;
 extern unsigned long fr;
+extern unsigned long nodes_num;
 
 # define FCNT(x) x; fr++
 # define MFAIL(x) if (!x) err_exit(); else ml++;
@@ -40,6 +41,8 @@ typedef	struct				s_hash
 	int		x;
 	int		y;
 	struct		s_hash *next;
+	int			visit;
+	size_t		bfs_level;
 	t_child		*child;
 }					t_hash;
 
@@ -51,6 +54,13 @@ typedef struct		s_graph
 	int				ants_num;
 	char			*map_buf;
 }					t_graph;
+
+typedef struct	s_q
+{
+		struct s_hash *q_node;
+		struct s_q *next; 
+} 				t_q;
+
 
 /*
 ** -------------------------- Hash table functions ----------------------------
@@ -80,11 +90,18 @@ char				*read_to_str(int fd);
 char				*gnl(char *text);
 void				err_exit();
 
+/*
+** -------------------------- Bfs functions --------------------------------
+*/
+
+void	bfs(t_graph *graph);
 
 /*
 ** -------------------------- Debug functions --------------------------------
 */
 void				print_hash_table_child(t_hash **h_table);
 void				print_hash_table(t_hash **h_table);
+void				print_queue(t_q *queue);
+
 
 #endif

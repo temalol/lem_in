@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 23:49:12 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/22 03:41:20 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/05 19:35:30 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_atoi_validate_pos(const char *str)
 
 	i = 0;
 	num = 0;
-		if (!str[i])
-			return (-1);
+	if (!str[i])
+		return (-1);
 			
 	while (str[i])
 		if (ft_isdigit(str[i]))

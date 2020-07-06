@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/01 03:19:47 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/06 03:32:40 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	err_exit()
 	exit(1);
 }
 
+
 void parse_comments(char *line, t_graph *graph)
 {
 	if (line[0] == '#' && line[1] == '#')
@@ -176,6 +177,7 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 			}
 		else
 			err_exit();
+		nodes_num++;
 		return(node);
 	}
 		else

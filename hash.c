@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 14:44:25 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/28 16:21:51 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/06 23:43:50 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_hash	*assign_to_table(t_hash **table, char *node_name)
 		new->child = NULL;
 		new->x = 0;
 		new->y = 0;
+		new->visit = 0;
 		new->node_name = node_name;
 
 	if (table[hash_val] == NULL )

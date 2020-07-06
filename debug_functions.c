@@ -6,11 +6,21 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 18:27:05 by nmustach          #+#    #+#             */
-/*   Updated: 2020/06/26 00:29:49 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 02:12:19 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	print_queue(t_q *queue)
+{
+	while (queue)
+	{
+		printf("%s\n", queue->q_node->node_name);
+		queue = queue->next;
+	}
+}
+
 
 void	print_hash_table(t_hash **h_table)
 {
