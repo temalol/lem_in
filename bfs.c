@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:59:44 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 17:43:22 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 18:06:44 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ void	bfs(t_graph *graph)
 	graph->start->bfs_level = bfscnt;
 	while (queue)
 	{
+		working_node = q_pop(&queue);
 		if (working_node == graph->end)
 		{
-			q_pop(&queue); //to do free queue
+			// printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
+			//q_pop(&queue); //to do free queue
 			return ;
 		}
-		// print_queue(queue);
-		working_node = q_pop(&queue);
 		bfscnt =  working_node->bfs_level;
 		// printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
 		add_nodes_to_queue(working_node, &queue, bfscnt + 1);
