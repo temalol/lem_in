@@ -6,11 +6,23 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:59:44 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 18:06:44 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 23:44:58 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	free_queue(t_q *queue)
+{
+	t_q	*tmp;
+
+	while (queue)
+	{
+		tmp = queue;
+		queue = queue->next;
+		FCNT(free(tmp));
+	}
+}
 
 void	add_nodes_to_queue(t_hash *working_node, t_q **queue, size_t bfscnt)
 {	
@@ -75,12 +87,12 @@ void	bfs(t_graph *graph)
 		working_node = q_pop(&queue);
 		if (working_node == graph->end)
 		{
-			// printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
-			//q_pop(&queue); //to do free queue
+			printf("\n%s BFS level:%lu", working_node->node_name, working_node->bfs_level);
+			free_queue(queue);
 			return ;
 		}
 		bfscnt =  working_node->bfs_level;
-		// printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
+		printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
 		add_nodes_to_queue(working_node, &queue, bfscnt + 1);
 	}
 	err_exit();

@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 16:32:04 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 22:30:17 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ typedef struct		s_graph
 
 typedef struct	s_q
 {
-		struct s_hash *q_node;
-		struct s_q *next; 
+		struct s_hash	*q_node;
+		struct s_q		*next;
 } 				t_q;
 
 
