@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 02:14:19 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 16:32:04 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,11 @@ void				err_exit();
 ** -------------------------- Bfs functions --------------------------------
 */
 
-void	bfs(t_graph *graph);
+void				bfs(t_graph *graph);
+void				q_push(t_hash *node, t_q **queue);
+t_hash				*q_pop(t_q **queue);
+
+
 
 /*
 ** -------------------------- Debug functions --------------------------------

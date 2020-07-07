@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:10:51 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 00:42:03 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 16:07:49 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ int	main()
 		//  print_hash_table_child(graph->h_table);
 	//  printf("\nStart node:%s\nEnd node:%s\n", graph->start->node_name, graph->end->node_name);
 	 free_graph(graph);
-	//  printf("\nMalloc:%lu Free:%lu\n",ml, fr);
+	 printf("\nMalloc:%lu Free:%lu\n",ml, fr);
 }

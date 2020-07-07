@@ -6,11 +6,29 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:59:44 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 02:21:47 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 17:04:13 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	add_nodes_to_queue(t_hash *working_node, t_q **queue, size_t bfscnt)
+{	
+	t_child *conns;
+
+	conns = working_node->child;
+		while (conns)
+		{
+			if (!conns->c_node->visit)
+			{
+				q_push(conns->c_node, queue);
+				conns->c_node->visit = 1;
+				conns->c_node->bfs_level = bfscnt;
+			}
+			conns = conns->next;
+		}
+}
+
 
 t_hash	*q_pop(t_q **queue)
 {
@@ -42,20 +60,26 @@ void	q_push(t_hash *node, t_q **queue)
 
 void	bfs(t_graph *graph)
 {
-	size_t bfs_l;
+	size_t bfscnt;
 	t_q *queue;
+	t_hash *working_node;
 	
-	bfs_l = 0;
+	bfscnt = 0;
 	queue = NULL;
 		
+	q_push(graph->start, &queue);
+	graph->start->visit = 1;
+	graph->start->bfs_level = bfscnt;
+	bfscnt++;
+	while (queue)
+	{
+		// print_queue(queue);
+		working_node = q_pop(&queue);
+		bfscnt =  working_node->bfs_level;
+		printf("\n%s BL:%lu", working_node->node_name, working_node->bfs_level);
+		add_nodes_to_queue(working_node, &queue, bfscnt + 1);
 	
-	q_push(graph->start,&queue);
-	q_push(graph->end,&queue);
-	print_queue(queue);
-	while(queue)
-	q_pop(&queue);
-
+	}
 	
-	print_queue(queue);
 	
 }
