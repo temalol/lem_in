@@ -6,11 +6,46 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:59:44 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 23:44:58 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/08 03:05:30 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_hash	*find_smallest_bfs(t_child *node)
+{
+	t_hash *smallest;
+	size_t smallest_bfs;
+	
+	smallest = node->c_node;
+	smallest_bfs = node->c_node->bfs_level;
+
+	while (node)
+	{
+		if (node->c_node->bfs_level < smallest_bfs)
+		{
+			smallest = node->c_node;
+			smallest_bfs = node->c_node->bfs_level;
+		}
+		node = node->next;
+	}
+	return (smallest);
+}
+
+
+t_shrt *get_shortest_path(t_hash *end_node)
+{
+	t_hash *curr_node;
+			
+	curr_node = end_node;		
+	while (curr_node->bfs_level > 0)
+	{
+		printf("%s=>",curr_node->node_name);
+		curr_node = find_smallest_bfs(curr_node->child);
+	}
+	printf("%s", curr_node->node_name);
+	return NULL;
+}
 
 void	free_queue(t_q *queue)
 {
@@ -69,8 +104,7 @@ void	q_push(t_hash *node, t_q **queue)
 	q_end = new;	
 }
 
-
-void	bfs(t_graph *graph)
+t_hash	*bfs(t_graph *graph)
 {
 	size_t bfscnt;
 	t_q *queue;
@@ -87,13 +121,13 @@ void	bfs(t_graph *graph)
 		working_node = q_pop(&queue);
 		if (working_node == graph->end)
 		{
-			printf("\n%s BFS level:%lu", working_node->node_name, working_node->bfs_level);
+		//	printf("\n%s BFS level:%lu", working_node->node_name, working_node->bfs_level);
 			free_queue(queue);
-			return ;
+			return (working_node);
 		}
 		bfscnt =  working_node->bfs_level;
-		printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
+		//printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
 		add_nodes_to_queue(working_node, &queue, bfscnt + 1);
 	}
-	err_exit();
+	return NULL;
 }

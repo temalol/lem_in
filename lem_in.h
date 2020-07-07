@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 22:30:17 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/08 03:03:03 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include "libft/libft.h"
+# include <limits.h>
 
 struct s_hash;
 
@@ -61,6 +62,12 @@ typedef struct	s_q
 		struct s_q		*next;
 } 				t_q;
 
+typedef struct	s_shrt
+{
+		struct s_hash	*q_node;
+		struct s_shrt	*next;
+} 				t_shrt;
+
 
 /*
 ** -------------------------- Hash table functions ----------------------------
@@ -94,10 +101,10 @@ void				err_exit();
 ** -------------------------- Bfs functions --------------------------------
 */
 
-void				bfs(t_graph *graph);
+t_hash				*bfs(t_graph *graph);
 void				q_push(t_hash *node, t_q **queue);
 t_hash				*q_pop(t_q **queue);
-
+t_shrt 				*get_shortest_path(t_hash *end_node);
 
 
 /*

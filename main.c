@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:10:51 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 17:44:21 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/08 03:03:25 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	main()
 {
 	t_graph *graph;
 	 graph = parse_input();
-		bfs(graph);
+		if (!bfs(graph))
+			err_exit();
+		get_shortest_path(graph->end);
+		
 	//  write(1, graph->map_buf, ft_strlen(graph->map_buf));
 		
 		// printf("\n\nNodes_num %lu", nodes_num);
