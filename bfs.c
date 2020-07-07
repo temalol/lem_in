@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:59:44 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/07 17:04:13 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/07 17:43:22 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	add_nodes_to_queue(t_hash *working_node, t_q **queue, size_t bfscnt)
 	t_child *conns;
 
 	conns = working_node->child;
-		while (conns)
+	while (conns)
+	{
+		if (!conns->c_node->visit)
 		{
-			if (!conns->c_node->visit)
-			{
-				q_push(conns->c_node, queue);
-				conns->c_node->visit = 1;
-				conns->c_node->bfs_level = bfscnt;
-			}
-			conns = conns->next;
+			q_push(conns->c_node, queue);
+			conns->c_node->visit = 1;
+			conns->c_node->bfs_level = bfscnt;
 		}
+		conns = conns->next;
+	}
 }
 
 
@@ -70,16 +70,18 @@ void	bfs(t_graph *graph)
 	q_push(graph->start, &queue);
 	graph->start->visit = 1;
 	graph->start->bfs_level = bfscnt;
-	bfscnt++;
 	while (queue)
 	{
+		if (working_node == graph->end)
+		{
+			q_pop(&queue); //to do free queue
+			return ;
+		}
 		// print_queue(queue);
 		working_node = q_pop(&queue);
 		bfscnt =  working_node->bfs_level;
-		printf("\n%s BL:%lu", working_node->node_name, working_node->bfs_level);
+		// printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
 		add_nodes_to_queue(working_node, &queue, bfscnt + 1);
-	
 	}
-	
-	
+	err_exit();
 }
