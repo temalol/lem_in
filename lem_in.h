@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/08 03:03:03 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/13 00:26:57 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef	struct		s_child
 	struct s_child	*next;
 }					t_child;
 
+typedef struct	s_path
+{
+		struct s_hash	*node;
+		struct s_path	*next;
+} 				t_path;
+
+
 typedef	struct				s_hash
 {
 	char		*node_name;
@@ -54,6 +61,7 @@ typedef struct		s_graph
 	t_hash			*end;
 	int				ants_num;
 	char			*map_buf;
+	t_path			*paths_list;
 }					t_graph;
 
 typedef struct	s_q
@@ -61,12 +69,6 @@ typedef struct	s_q
 		struct s_hash	*q_node;
 		struct s_q		*next;
 } 				t_q;
-
-typedef struct	s_shrt
-{
-		struct s_hash	*q_node;
-		struct s_shrt	*next;
-} 				t_shrt;
 
 
 /*
@@ -101,10 +103,15 @@ void				err_exit();
 ** -------------------------- Bfs functions --------------------------------
 */
 
+void 				dfs(t_graph *graph, t_path *path);
 t_hash				*bfs(t_graph *graph);
 void				q_push(t_hash *node, t_q **queue);
 t_hash				*q_pop(t_q **queue);
-t_shrt 				*get_shortest_path(t_hash *end_node);
+void 				*get_shortest_path(t_hash *end_node);
+t_path				*path_init(t_hash *start);
+t_path				*clone_path(t_path *path);
+void				append_to_path(t_path **path, t_hash *node);
+void				free_path(t_path *path);
 
 
 /*

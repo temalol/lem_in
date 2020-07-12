@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:59:44 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/08 03:05:30 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/11 02:10:31 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_hash	*find_smallest_bfs(t_child *node)
 }
 
 
-t_shrt *get_shortest_path(t_hash *end_node)
+void *get_shortest_path(t_hash *end_node)
 {
 	t_hash *curr_node;
 			
@@ -112,7 +112,7 @@ t_hash	*bfs(t_graph *graph)
 	
 	bfscnt = 0;
 	queue = NULL;
-		
+	
 	q_push(graph->start, &queue);
 	graph->start->visit = 1;
 	graph->start->bfs_level = bfscnt;

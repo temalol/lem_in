@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:10:51 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/08 03:03:25 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/13 02:14:40 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	main()
 {
 	t_graph *graph;
 	 graph = parse_input();
-		if (!bfs(graph))
-			err_exit();
+		bfs(graph);
 		get_shortest_path(graph->end);
-		
-	//  write(1, graph->map_buf, ft_strlen(graph->map_buf));
-		
-		// printf("\n\nNodes_num %lu", nodes_num);
+
+	 //write(1, graph->map_buf, ft_strlen(graph->map_buf));
+		//dfs(graph, path_init(graph->start));
+		 
+		printf("\n\nNodes_num %lu", nodes_num);
 		//  print_hash_table_child(graph->h_table);
 	//  printf("\nStart node:%s\nEnd node:%s\n", graph->start->node_name, graph->end->node_name);
 	 free_graph(graph);
