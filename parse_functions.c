@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 17:08:45 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/05 15:29:11 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/23 19:09:26 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	add_link(t_hash *parent, t_hash *child)
 		MFAIL((new = malloc(sizeof(t_child)))); 
 		new->next = NULL;
 		new->c_node = child;
-			
+		new->flow = 1;
+		new->weight = 1;
 		if (parent->child == NULL)
 			parent->child = new;	
 		else

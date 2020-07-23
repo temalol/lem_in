@@ -6,13 +6,14 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:10:51 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/13 02:14:40 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/23 23:29:14 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 unsigned long ml = 0;
 unsigned long fr = 0;
 unsigned long nodes_num = 0;
+unsigned long edges_num = 0;
 
 #include "lem_in.h"
 
@@ -28,15 +29,30 @@ int	main()
 {
 	t_graph *graph;
 	 graph = parse_input();
-		bfs(graph);
-		get_shortest_path(graph->end);
-
-	 //write(1, graph->map_buf, ft_strlen(graph->map_buf));
-		//dfs(graph, path_init(graph->start));
+	//  write(1, graph->map_buf, ft_strlen(graph->map_buf));
+		
+		
+		
+		dijkstra(graph);
+		
+		t_hash *node;
+		
+		node = graph->end;
+		printf("%s=>", node->node_name);
+		while (node != graph->start)
+		{
+			printf("%s=>", node->prev->node_name);
+			node = node->prev;
+		}
+		
+		printf("\n");
+		// bfs(graph);
+		// get_shortest_path(graph->end);
+	
 		 
-		printf("\n\nNodes_num %lu", nodes_num);
-		//  print_hash_table_child(graph->h_table);
-	//  printf("\nStart node:%s\nEnd node:%s\n", graph->start->node_name, graph->end->node_name);
+		printf("\n\nNodes_num %lu, Edges_num %lu", nodes_num, edges_num);
+		// print_hash_table_child(graph->h_table);
+	//printf("\nStart node:%s\nEnd node:%s\n", graph->start->node_name, graph->end->node_name);
 	 free_graph(graph);
 	 printf("\nMalloc:%lu Free:%lu\n",ml, fr);
 }

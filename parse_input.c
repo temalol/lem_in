@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/06 03:32:40 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/23 00:33:14 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	parse_connections(t_graph *graph, char *line)
 			check_if_already_linked(child, parent);
 			add_link(parent, child);
 			add_link(child, parent);
+			edges_num += 2; 
 		}
 		else
 			err_exit();

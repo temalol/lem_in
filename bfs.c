@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:59:44 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/11 02:10:31 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/23 23:25:03 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ void *get_shortest_path(t_hash *end_node)
 {
 	t_hash *curr_node;
 			
-	curr_node = end_node;		
+	curr_node = end_node;
 	while (curr_node->bfs_level > 0)
 	{
 		printf("%s=>",curr_node->node_name);
+		//curr_node->visit = INT_MAX;
+		//curr_node->bfs_level = INT_MAX;
 		curr_node = find_smallest_bfs(curr_node->child);
 	}
 	printf("%s", curr_node->node_name);
@@ -59,17 +61,17 @@ void	free_queue(t_q *queue)
 	}
 }
 
-void	add_nodes_to_queue(t_hash *working_node, t_q **queue, size_t bfscnt)
+void	add_nodes_to_queue(t_hash *working_node, t_q **queue, size_t bfscnt, size_t vis)
 {	
 	t_child *conns;
 
 	conns = working_node->child;
 	while (conns)
 	{
-		if (!conns->c_node->visit)
+		if (conns->c_node->visit < vis)
 		{
 			q_push(conns->c_node, queue);
-			conns->c_node->visit = 1;
+			conns->c_node->visit = vis;
 			conns->c_node->bfs_level = bfscnt;
 		}
 		conns = conns->next;
@@ -109,25 +111,29 @@ t_hash	*bfs(t_graph *graph)
 	size_t bfscnt;
 	t_q *queue;
 	t_hash *working_node;
-	
+	t_hash *ret;
+	static size_t vis;
+ 	
 	bfscnt = 0;
 	queue = NULL;
+	ret = NULL;
 	
+	vis++;
 	q_push(graph->start, &queue);
-	graph->start->visit = 1;
+	graph->start->visit = vis;
 	graph->start->bfs_level = bfscnt;
 	while (queue)
 	{
 		working_node = q_pop(&queue);
 		if (working_node == graph->end)
 		{
-		//	printf("\n%s BFS level:%lu", working_node->node_name, working_node->bfs_level);
-			free_queue(queue);
-			return (working_node);
+			//printf("\n%s BFS level:%lu", working_node->node_name, working_node->bfs_level);
+			//free_queue(queue);
+			ret = working_node;
 		}
 		bfscnt =  working_node->bfs_level;
 		//printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
-		add_nodes_to_queue(working_node, &queue, bfscnt + 1);
+		add_nodes_to_queue(working_node, &queue, bfscnt + 1,vis);
 	}
-	return NULL;
+	return ret;
 }

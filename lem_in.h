@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/13 00:26:57 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/23 21:50:44 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct s_hash;
 extern unsigned long ml;
 extern unsigned long fr;
 extern unsigned long nodes_num;
+extern unsigned long edges_num;
 
 # define FCNT(x) x; fr++
 # define MFAIL(x) if (!x) err_exit(); else ml++;
@@ -33,6 +34,8 @@ extern unsigned long nodes_num;
 typedef	struct		s_child
 {
 	struct s_hash	*c_node;
+	int				flow;
+	size_t			weight;
 	struct s_child	*next;
 }					t_child;
 
@@ -49,9 +52,11 @@ typedef	struct				s_hash
 	int		x;
 	int		y;
 	struct		s_hash *next;
-	int			visit;
+	size_t			visit;
+	size_t 		mark;
 	size_t		bfs_level;
 	t_child		*child;
+	struct s_hash 	*prev;
 }					t_hash;
 
 typedef struct		s_graph
@@ -120,6 +125,9 @@ void				free_path(t_path *path);
 void				print_hash_table_child(t_hash **h_table);
 void				print_hash_table(t_hash **h_table);
 void				print_queue(t_q *queue);
+
+
+int dijkstra(t_graph *graph);
 
 
 #endif
