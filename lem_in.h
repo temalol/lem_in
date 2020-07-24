@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/23 21:50:44 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/24 15:39:10 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ typedef struct	s_path
 		struct s_path	*next;
 } 				t_path;
 
+typedef struct	s_vis
+{
+	struct s_hash	*node;
+	struct s_vis	*next;
+}
+				t_vis;
 
 typedef	struct				s_hash
 {
@@ -117,6 +123,8 @@ t_path				*path_init(t_hash *start);
 t_path				*clone_path(t_path *path);
 void				append_to_path(t_path **path, t_hash *node);
 void				free_path(t_path *path);
+void				free_queue(t_q *queue);
+
 
 
 /*
@@ -128,6 +136,7 @@ void				print_queue(t_q *queue);
 
 
 int dijkstra(t_graph *graph);
+void dijkstra_shortest(t_graph *graph);
 
 
 #endif

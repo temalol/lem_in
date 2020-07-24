@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:59:44 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/23 23:25:03 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/24 20:53:00 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,6 @@ void *get_shortest_path(t_hash *end_node)
 	return NULL;
 }
 
-void	free_queue(t_q *queue)
-{
-	t_q	*tmp;
-
-	while (queue)
-	{
-		tmp = queue;
-		queue = queue->next;
-		FCNT(free(tmp));
-	}
-}
-
 void	add_nodes_to_queue(t_hash *working_node, t_q **queue, size_t bfscnt, size_t vis)
 {	
 	t_child *conns;
@@ -91,19 +79,40 @@ t_hash	*q_pop(t_q **queue)
 	return (ret_node);
 }
 
+void	free_queue(t_q *queue)
+{
+	t_q *tmp;
+		
+	while (queue)
+	{
+		tmp = queue->next;
+		FCNT(free(queue));
+		queue = tmp;
+	}
+	
+}
+
+
 void	q_push(t_hash *node, t_q **queue)
 {
 	t_q *new;
-	static t_q *q_end;
+	t_q *q_end;
 	
+	q_end = *queue;
 	MFAIL((new = malloc(sizeof(t_q))));
-	if (!(*queue))
-		(*queue) = new;
 	new->q_node = node;
-	if (q_end)
-	q_end->next = new;
 	new->next = NULL;
-	q_end = new;	
+	if (!*queue)
+	{
+		*queue = new;
+		new->next = NULL;
+		return ;
+	}
+	while (q_end->next)
+		q_end = q_end->next;
+	q_end->next = new;
+	
+	
 }
 
 t_hash	*bfs(t_graph *graph)
