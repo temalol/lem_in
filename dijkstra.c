@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:08:31 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/24 23:40:53 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/25 02:32:34 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void dijkstra_shortest_reverse(t_graph *graph)
 		back_edge = get_edge(curr->prev->child, curr);
 		back_edge->flow = 0;
 		forw_edge->weight = 0;
-		printf("\n%s=>%s (f:%d) |",back_edge->c_node->node_name, forw_edge->c_node->node_name, forw_edge->flow);
-		printf(" %s=>%s (f:%d)\n", forw_edge->c_node->node_name, back_edge->c_node->node_name, back_edge->flow);
+		// printf("\n%s=>%s (f:%d) |",back_edge->c_node->node_name, forw_edge->c_node->node_name, forw_edge->flow);
+		// printf(" %s=>%s (f:%d)\n", forw_edge->c_node->node_name, back_edge->c_node->node_name, back_edge->flow);
 		curr = curr->prev;
 	}
 	//printf("%s", node->node_name);
@@ -135,6 +135,8 @@ void	add_to_queue(t_hash *working_node,t_q **queue, t_vis **vis_lst)
 				{
 					edjs->c_node->mark = working_node->mark + edjs->weight;
 					edjs->c_node->prev = working_node;
+					//printf("W:%s   ", working_node->node_name);
+					//printf("%s prev: %s\n",edjs->c_node->node_name, edjs->c_node->prev->node_name );
 				}
 		}
 		edjs = edjs->next;
@@ -156,13 +158,16 @@ int dijkstra(t_graph *graph)
 	 while (queue)
  	{
 		working_node = q_pop(&queue);
+				//printf("%s\n", working_node->node_name);
+
 		if (working_node == graph->end)
-			{
+			{	
 				reset_graph(vis_lst);
 				free_queue(queue);
 				return 1;
 			}
 		add_to_queue(working_node, &queue, &vis_lst);
+
 	}
 	reset_graph(vis_lst);
 	return 0;

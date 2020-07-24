@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:59:44 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/24 20:53:00 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/25 01:54:19 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	add_nodes_to_queue(t_hash *working_node, t_q **queue, size_t bfscnt, size_t
 	conns = working_node->child;
 	while (conns)
 	{
-		if (conns->c_node->visit < vis)
+		if (conns->c_node->visit < vis && conns->flow > 0)
 		{
 			q_push(conns->c_node, queue);
 			conns->c_node->visit = vis;
@@ -141,7 +141,7 @@ t_hash	*bfs(t_graph *graph)
 			ret = working_node;
 		}
 		bfscnt =  working_node->bfs_level;
-		//printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
+		printf("\n%s Bfs Level:%lu", working_node->node_name, working_node->bfs_level);
 		add_nodes_to_queue(working_node, &queue, bfscnt + 1,vis);
 	}
 	return ret;
