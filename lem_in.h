@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/24 15:39:10 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/24 23:15:40 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,11 @@ void				print_queue(t_q *queue);
 
 
 int dijkstra(t_graph *graph);
-void dijkstra_shortest(t_graph *graph);
+void dijkstra_shortest_reverse(t_graph *graph);
+t_child		*get_edge(t_child *haystack, t_hash *needle);
+void	get_paths(t_graph *graph);
+
+
 
 
 #endif

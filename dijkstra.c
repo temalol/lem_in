@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:08:31 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/24 20:53:20 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/07/24 23:40:53 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,29 @@ void	add_to_vis(t_hash *node, t_vis **vis_lst)
 	(*vis_lst) = vis_node;
 }
 
-void dijkstra_shortest(t_graph *graph)
+void dijkstra_shortest_reverse(t_graph *graph)
 {
-	t_hash *node;
+	t_hash *curr;
+	t_hash *prev;
+	t_child *back_edge;
+	t_child *forw_edge;
 
-	node = graph->end->prev;
-	printf("%s<=", graph->end->node_name);
-	while (node != graph->start)
+	curr = graph->end;
+	
+	//printf("%s<=", graph->end->node_name);
+	while (curr != graph->start)
 	{
-		printf("%s<=", node->node_name);
-		node = node->prev;
+	//	printf("%s<=", node->node_name);
+		prev = curr->prev;
+		forw_edge = get_edge(curr->child, curr->prev);
+		back_edge = get_edge(curr->prev->child, curr);
+		back_edge->flow = 0;
+		forw_edge->weight = 0;
+		printf("\n%s=>%s (f:%d) |",back_edge->c_node->node_name, forw_edge->c_node->node_name, forw_edge->flow);
+		printf(" %s=>%s (f:%d)\n", forw_edge->c_node->node_name, back_edge->c_node->node_name, back_edge->flow);
+		curr = curr->prev;
 	}
-	printf("%s", node->node_name);
+	//printf("%s", node->node_name);
 }
 
 
