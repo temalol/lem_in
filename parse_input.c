@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:14:48 by nmustach          #+#    #+#             */
-/*   Updated: 2020/09/14 01:09:12 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/09/14 01:51:01 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,20 @@ void	parse_rooms(t_graph *graph)
 	char	*str_ret;
 	t_hash	*node_ret;
 
-	while ((str_ret = gnl(graph->map_buf)) != NULL)
+	while ((str_ret = gnl(graph->map_buf)) != NULL) // Читаем line by line пока читаются валидные комнаты с координатами как (nodename 25 25)
 	{
 		if (str_ret[0] == '#')
 		{
 			parse_comments(str_ret, graph);
 			continue ;
 		}
-		if ((node_ret = parse_node_name(str_ret, graph->h_table)))
+		if ((node_ret = parse_node_name(str_ret, graph->h_table))) // Парсим имена комнат и добавляем их в хэш таблицу
 			continue ;
 		else
-			break ;
+			break ; // Если парсинг невалидный, комнаты закончились, переходим на парсинг связей как(nodeA-nodeB)
 	}
-	if (graph->start && graph->end)
-		parse_links(graph, str_ret);
+	if (graph->start && graph->end) // Проверяем на наличие start и end node
+		parse_links(graph, str_ret); 
 	else
 		err_exit();
 }
@@ -121,7 +121,7 @@ void	parse_comments(char *line, t_graph *graph)
 	}
 }
 
-void	parse_ants_number(t_graph *graph)
+void	parse_ants_number(t_graph *graph) 
 {
 	char	*ret;
 	int		ants_num;

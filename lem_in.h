@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/09/14 01:39:56 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/09/14 02:03:18 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ extern unsigned long edges_num;
 # define FCNT(x) x; fr++
 # define MFAIL(x) if (!x) err_exit(); else ml++;
 
-typedef	struct		s_child
+typedef	struct		s_child 
 {
-	struct s_hash	*c_node;
+	struct s_hash	*c_node; //  Указатель на вершину t_hash
 	int				flow;
 	size_t			weight;
-	struct s_child	*next;
+	struct s_child	*next; // Указатель списка на следующую вершину
 }					t_child;
 
 typedef struct	s_path
@@ -54,21 +54,21 @@ typedef struct	s_vis
 
 typedef	struct				s_hash
 {
-	char		*node_name;
+	char		*node_name; 
 	int		x;
 	int		y;
-	struct		s_hash *next;
+	struct		s_hash *next; // Тут хранятся коллизии хэш таблицы (Список)
 	size_t			visit;
 	size_t 		mark;
 	size_t		bfs_level;
-	t_child		*child;
-	struct s_hash 	*prev;
+	t_child		*child; // Тут хранятся связи для данной ноды (Список) 
+	struct s_hash 	*prev; 
 }					t_hash;
 
 typedef struct		s_graph
 {
-	t_hash			**h_table;
-	t_hash			*start;
+	t_hash			**h_table; // Указатель на хэш таблицу
+	t_hash			*start; 
 	t_hash			*end;
 	int				ants_num;
 	char			*map_buf;
