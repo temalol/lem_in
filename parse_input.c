@@ -188,8 +188,8 @@ t_hash	*parse_node_name(char *line, t_hash **h_table)
 t_graph	*parse_input()
 {
 	t_graph *graph = NULL;
-	graph = graph_init();
-	graph->map_buf = read_to_str(0);
+	graph = graph_init(); // Инициализиуем хэш таблицу и указатели на начальную и конечную ноду
+	graph->map_buf = read_to_str(0);  // Читаем в буфер входной поток (0)
 	parse_ants_number(graph);
 	parse_rooms(graph);
 	 if (!graph->start->child || !graph->end->child)

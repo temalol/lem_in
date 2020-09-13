@@ -15,7 +15,7 @@
 int	ft_atoi_validate_pos(const char *str)
 {
 	int					i;
-	 int 				num;
+	int 				num;
 
 	i = 0;
 	num = 0;

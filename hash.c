@@ -19,7 +19,7 @@ t_hash	**hash_table_init()
 	
 	i = 0;
 	MFAIL((hash_table = malloc(sizeof(t_hash*) * TABLE_SIZE)));
-	while(i < TABLE_SIZE)
+	while(i < TABLE_SIZE) // Заполнить массив NULL указателями
 	{
 		hash_table[i] = NULL;
 		i++;
