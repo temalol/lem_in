@@ -6,7 +6,7 @@
 /*   By: nmustach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 22:28:00 by nmustach          #+#    #+#             */
-/*   Updated: 2020/07/24 23:15:40 by nmustach         ###   ########.fr       */
+/*   Updated: 2020/09/14 01:39:56 by nmustach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ typedef struct	s_q
 {
 		struct s_hash	*q_node;
 		struct s_q		*next;
-} 				t_q;
-
+}				t_q;
 
 /*
 ** -------------------------- Hash table functions ----------------------------
@@ -94,7 +93,6 @@ void				free_hash_table(t_hash **h_table);
 t_graph				*graph_init();
 void				add_link(t_hash *parent, t_hash *child);
 void				check_if_already_linked(t_hash *haystack, t_hash *needle);
-
 
 /*
 ** -------------------------- Parsing functions --------------------------------
@@ -114,18 +112,15 @@ void				err_exit();
 ** -------------------------- Bfs functions --------------------------------
 */
 
-void 				dfs(t_graph *graph, t_path *path);
 t_hash				*bfs(t_graph *graph);
 void				q_push(t_hash *node, t_q **queue);
 t_hash				*q_pop(t_q **queue);
-void 				*get_shortest_path(t_hash *end_node);
+void				*get_shortest_path(t_hash *end_node);
 t_path				*path_init(t_hash *start);
 t_path				*clone_path(t_path *path);
 void				append_to_path(t_path **path, t_hash *node);
 void				free_path(t_path *path);
 void				free_queue(t_q *queue);
-
-
 
 /*
 ** -------------------------- Debug functions --------------------------------
@@ -134,13 +129,9 @@ void				print_hash_table_child(t_hash **h_table);
 void				print_hash_table(t_hash **h_table);
 void				print_queue(t_q *queue);
 
-
 int dijkstra(t_graph *graph);
 void dijkstra_shortest_reverse(t_graph *graph);
 t_child		*get_edge(t_child *haystack, t_hash *needle);
 void	get_paths(t_graph *graph);
-
-
-
 
 #endif
